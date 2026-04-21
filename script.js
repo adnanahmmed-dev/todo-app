@@ -1,17 +1,13 @@
-let display = document.getElementById("display");
+async function getWeather() {
+  const city = document.getElementById("city").value;
 
-function appendValue(value) {
-  display.value += value;
-}
+  const apiKey = "YOUR_API_KEY";
 
-function clearDisplay() {
-  display.value = "";
-}
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-function calculate() {
-  try {
-    display.value = eval(display.value);
-  } catch {
-    display.value = "Error";
-  }
+  const res = await fetch(url);
+  const data = await res.json();
+
+  document.getElementById("result").innerText =
+    `Temp: ${data.main.temp}°C`;
 }
