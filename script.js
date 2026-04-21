@@ -1,17 +1,17 @@
-function addTask() {
-  const input = document.getElementById("taskInput");
-  const task = input.value;
+let display = document.getElementById("display");
 
-  if (task === "") return;
+function appendValue(value) {
+  display.value += value;
+}
 
-  const li = document.createElement("li");
-  li.innerText = task;
+function clearDisplay() {
+  display.value = "";
+}
 
-  li.onclick = function () {
-    li.remove();
-  };
-
-  document.getElementById("taskList").appendChild(li);
-
-  input.value = "";
+function calculate() {
+  try {
+    display.value = eval(display.value);
+  } catch {
+    display.value = "Error";
+  }
 }
